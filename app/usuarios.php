@@ -18,7 +18,8 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head>		
+  	<title>Simple Stock</title>
 	<?php include("head.php");?>
   </head>
   <body>

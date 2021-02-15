@@ -16,7 +16,7 @@ pipeline {
         // Não sei o pq está apresentando erro, solução retirada do StackOverflow
         stage ('Sonar QG') {
             steps {
-                sleep(20)
+                sleep(15)
                 timeout(time: 1, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }

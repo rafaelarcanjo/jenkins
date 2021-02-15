@@ -66,7 +66,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head><title><?php echo $title;?></title>
     <?php include("head.php");?>
   </head>
   <body>
