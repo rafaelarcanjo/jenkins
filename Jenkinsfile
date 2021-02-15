@@ -22,6 +22,16 @@ pipeline {
                 }
             }
         }
+        // Removendo builds antigas
+        stage ('Removendo builds') {
+            steps {
+                try {
+                    sh 'docker rm -f $(docker container ls -a -f name=jenkins_* -q)'
+                } catch(error) {
+                    sh 'echo Sem imagens para remover'
+                }
+            }
+        }
         // Deploy Docker
         stage ('Deploy Docker') {
             steps {
