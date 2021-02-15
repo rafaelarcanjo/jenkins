@@ -13,6 +13,7 @@ pipeline {
             }
         }
         // Sonar QG
+        // Não sei o pq está apresentando erro, solução retirada do StackOverflow
         stage ('Sonar QG') {
             steps {
                 sleep(20)
