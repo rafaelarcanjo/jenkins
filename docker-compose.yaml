@@ -9,6 +9,7 @@ services:
       - MYSQL_ROOT_PASSWORD=9ZxPyx4i8ooBrlN6
     volumes:
       - db_data:/var/lib/mysql
+      - /jenkins-data/workspace/${JOB_NAME}/sql:/docker-entrypoint-initdb.d/:rw
     command: 
       ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
 
