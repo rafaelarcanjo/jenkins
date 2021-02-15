@@ -57,7 +57,18 @@ pipeline {
                 }
             }
         }
-        //
+        // Salvando o log
+        stage ('Save Log') {
+            steps {
+                script {
+                    def log = Jenkins.getInstance()
+                        .getItemByFullName(dnv.JOB_NAME)
+                        .getBuildByNumber(Integer.parseInt(env.BUILD_NUMBER))
+                        .logFile.text
+                    writeFile file: "build_${BUILD_NUMBER}.txt", text: log
+                }
+            }
+        }
     }
     post {
         always {
