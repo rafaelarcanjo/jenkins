@@ -27,7 +27,8 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'docker rm -f $(docker container ls -a -f name=jenkins_* -q)'
+                        sh 'docker rm -f jenkings_nginx'
+                        sh 'docker rm -f jenkings_php'                        
                     } catch(error) {
                         sh 'echo Sem imagens para remover'
                     }
