@@ -1,7 +1,8 @@
 pipeline {
     agent any 
     stages {
-        stage ('Analise Sonar') {
+        // Sonar Análise
+        stage ('Sonar Análise') {
             environment {
                 SONAR_SCANNER = tool 'SONAR_SCANNER'
             }
@@ -11,5 +12,15 @@ pipeline {
                 }
             }
         }
+        // Sonar QG
+        stage ('Sonar QG') {
+            steps {
+                sleep(20)
+                timeout(time: 1, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+        //
     }
 }
