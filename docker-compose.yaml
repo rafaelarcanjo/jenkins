@@ -23,7 +23,7 @@ services:
       - db
       - front
     volumes:    
-      - "jenkins-data:/var/www/html"
+      - "jenkins-data/workspace/${JOB_NAME}/app:/var/www/html"
     environment:
       - MYSQL_USER=root
       - MYSQL_PASS=9ZxPyx4i8ooBrlN6
