@@ -42,6 +42,21 @@ pipeline {
                 sh 'docker-compose up -d'
             }
         }
+        // Verificando se o serviço está online
+        stage ('Check Healt') {
+            steps {
+                timeout(time: 15, unit: 'SECONDS') {
+                    waitUntil {
+                        try {
+                            sh 'curl -s --head --request GET http://172.16.100.102/ok.php | grep 200'
+                            return true
+                        } catch (Exception e) {
+                            return false
+                        }
+                    }
+                }
+            }
+        }
         //
     }
 }

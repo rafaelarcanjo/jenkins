@@ -6,3 +6,8 @@ docker run -d --rm --name jenkins -u root -p 8080:8080 -v /jenkins-data:/var/jen
 # Se der tempo, coloco em Dockerfile
 docker exec -it jenkins sh -c 'curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
 docker exec -it jenkins sh -c 'chmod +x /usr/local/bin/docker-compose'
+
+# Verificando se é para subir o Sonar
+if [[ -z $(docker container ls -a -f name=sonar) ]]; then
+    docker-compose --project-directory ./sonar
+fi
