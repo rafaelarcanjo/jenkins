@@ -1,5 +1,4 @@
-FROM sonarqube:7.7-community
+FROM sonarqube:lts
 
 USER root
-RUN apt-get update && apt-get install nodejs -y
-USER sonarqube
+RUN apt-get update && apt-get install nodejs -y && ln -s "$(which nodejs)" /usr/local/bin/node

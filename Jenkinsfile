@@ -8,7 +8,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('SONAR_LOCAL') {
-                    sh "${SONAR_SCANNER}/bin/sonar-scanner -e -Dsonar.projectKey=DeployPHP -Dsonar.sources=./app -Dsonar.host.url=http://172.16.100.102:9000 -Dsonar.login=04f557c3ab99d0f3005c8a7e9e6773759d2ff7f2 -Dsonar.coverage.exclusions=**ok.php** -Dsonar.report.export.path=sonar-report.json"
+                    sh "${SONAR_SCANNER}/bin/sonar-scanner -e -Dsonar.projectKey=DeployPHP -Dsonar.sources=./app -Dsonar.host.url=http://172.16.100.102:9000 -Dsonar.login=0ca722700a21dcd98884a08b0721a62b1ad95b4d -Dsonar.coverage.exclusions=**ok.php** -Dsonar.report.export.path=sonar-report.json"
                 }
             }
         }
@@ -16,7 +16,7 @@ pipeline {
         // Não sei o pq está apresentando erro, solução retirada do StackOverflow
         stage ('Sonar QG') {
             steps {
-                sleep(10)
+                sleep(15)
                 timeout(time: 1, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
@@ -62,15 +62,15 @@ pipeline {
     post {
         always {
             emailext attachLog: true, body: 'Log em anexo', subject: 'Build $BUILD_NUMBER OK',
-                to: 'rafael@libre.tec.br'
+                to: 'rafael.wzs@gmail.com'
         }
         unsuccessful {
             emailext attachLog: true, body: 'Log em anexo', subject: 'Build $BUILD_NUMBER falhou',
-                to: 'rafael@libre.tec.br'
+                to: 'rafael.wzs@gmail.com'
         }
         fixed {
             emailext attachLog: true, body: 'Log em anexo', subject: 'Build $BUILD_NUMBER OK',
-                to: 'rafael@libre.tec.br'
+                to: 'rafael.wzs@gmail.com'
         }
     }
 }
