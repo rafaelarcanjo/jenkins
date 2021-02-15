@@ -35,7 +35,7 @@ services:
     image: nginx:1-alpine
     volumes:
       - "/jenkins-data/workspace/${JOB_NAME}/app:/var/www/html"
-      - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
+      - "/jenkins-data/workspace/${JOB_NAME}/nginx/nginx.conf:/etc/nginx/nginx.conf"
     networks:
       - front
     ports:
