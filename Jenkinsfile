@@ -46,7 +46,7 @@ pipeline {
         stage ('Check Healt') {
             steps {
                 timeout(time: 15, unit: 'SECONDS') {
-                    waitUntil {
+                    script {
                         try {
                             sh 'curl -s --head --request GET http://172.16.100.102/ok.php | grep 200'
                             return true
