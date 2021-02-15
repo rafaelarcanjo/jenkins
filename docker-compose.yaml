@@ -23,7 +23,7 @@ services:
       - db
       - front
     volumes:    
-      - "jenkins-data/workspace/PHP_Pipeline/app:/var/www/html"
+      - "jenkins-data:/var/www/html"
     environment:
       - MYSQL_USER=root
       - MYSQL_PASS=9ZxPyx4i8ooBrlN6
