@@ -19,7 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `simple_stock`
 --
+CREATE DATABASE `simple_stock`;
 
+USE `simple_stock`;
 -- --------------------------------------------------------
 
 --
