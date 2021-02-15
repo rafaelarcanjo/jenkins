@@ -8,7 +8,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('SONAR_LOCAL') {
-                    sh "${SONAR_SCANNER}/bin/sonar-scanner -e -Dsonar.projectKey=DeployPHP -Dsonar.sources=./app -Dsonar.host.url=http://172.16.100.102:9000 -Dsonar.login=04f557c3ab99d0f3005c8a7e9e6773759d2ff7f2 sonar.coverage.exclusions=**ok.php**"
+                    sh "${SONAR_SCANNER}/bin/sonar-scanner -e -Dsonar.projectKey=DeployPHP -Dsonar.sources=./app -Dsonar.host.url=http://172.16.100.102:9000 -Dsonar.login=04f557c3ab99d0f3005c8a7e9e6773759d2ff7f2 -Dsonar.coverage.exclusions=**ok.php**"
                 }
             }
         }
@@ -16,7 +16,7 @@ pipeline {
         // Não sei o pq está apresentando erro, solução retirada do StackOverflow
         stage ('Sonar QG') {
             steps {
-                sleep(15)
+                sleep(10)
                 timeout(time: 1, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
