@@ -65,7 +65,7 @@ pipeline {
                         .getItemByFullName(dnv.JOB_NAME)
                         .getBuildByNumber(Integer.parseInt(env.BUILD_NUMBER))
                         .logFile.text
-                    writeFile file: "build_${BUILD_NUMBER}.txt", text: log
+                    writeFile file: "build_${BUILD_NUMBER}.txt", text: log 
                 }
             }
         }
