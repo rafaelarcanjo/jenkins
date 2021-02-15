@@ -8,7 +8,13 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('SONAR_LOCAL') {
-                    sh "${SONAR_SCANNER}/bin/sonar-scanner -e -Dsonar.projectKey=DeployPHP -Dsonar.sources=./app -Dsonar.host.url=http://172.16.100.102:9000 -Dsonar.login=04f557c3ab99d0f3005c8a7e9e6773759d2ff7f2 -Dsonar.coverage.exclusions=**ok.php** -Dsonar.report.export.path=sonar-report.json"
+                    sh "${SONAR_SCANNER}/bin/sonar-scanner -e \ 
+                        -Dsonar.projectKey=DeployPHP \ 
+                        -Dsonar.sources=./app \ 
+                        -Dsonar.host.url=http://172.16.100.102:9000 \ 
+                        -Dsonar.login=04f557c3ab99d0f3005c8a7e9e6773759d2ff7f2 \ 
+                        -Dsonar.coverage.exclusions=**ok.php** \ 
+                        -Dsonar.report.export.path=sonar-report.json"
                 }
             }
         }
@@ -58,5 +64,19 @@ pipeline {
             }
         }
         //
+    }
+    post {
+        always {
+            emailext attachLog: true, body: 'Log em anexo', subject: 'Build $BUILD_NUMBER OK',
+                to: 'rafael@libre.tec.br'
+        }
+        unsuccessful {
+            emailext attachLog: true, body: 'Log em anexo', subject: 'Build $BUILD_NUMBER falhou',
+                to: 'rafael@libre.tec.br'
+        }
+        fixed {
+            emailext attachLog: true, body: 'Log em anexo', subject: 'Build $BUILD_NUMBER OK',
+                to: 'rafael@libre.tec.br'
+        }
     }
 }
