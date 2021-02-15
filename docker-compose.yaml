@@ -17,6 +17,8 @@ services:
     image: php:build_${BUILD_NUMBER}
     build:
       context: ./php
+    ports:
+      - 80:80
     networks:
       - db
       - front

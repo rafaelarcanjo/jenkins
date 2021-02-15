@@ -21,6 +21,13 @@ pipeline {
                 }
             }
         }
+        // Deploy Docker
+        stage ('Deploy Docker') {
+            steps {
+                sh 'docker-compose build'
+                sh 'docker-compose up -d'
+            }
+        }
         //
     }
 }
