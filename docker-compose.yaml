@@ -43,7 +43,7 @@ services:
     environment:
       - APP_VERSION=build_${BUILD_NUMBER}
     depends_on:
-      - jenkins_php
+      - php
 
 networks:
   db:
